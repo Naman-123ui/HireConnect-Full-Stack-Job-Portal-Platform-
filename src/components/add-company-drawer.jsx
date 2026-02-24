@@ -59,7 +59,7 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
     if (dataAddCompany?.length > 0) {
       fetchCompanies();
     }
-  }, [loadingAddCompany]);
+  }, [dataAddCompany, fetchCompanies]);
 
   return (
     <Drawer>
@@ -72,7 +72,7 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
         <DrawerHeader>
           <DrawerTitle>Add a New Company</DrawerTitle>
         </DrawerHeader>
-        <form className="flex gap-2 p-4 pb-0">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2 p-4 pb-0">
           {/* Company Name */}
           <Input placeholder="Company name" {...register("name")} />
 
@@ -86,8 +86,7 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
 
           {/* Add Button */}
           <Button
-            type="button"
-            onClick={handleSubmit(onSubmit)}
+            type="submit"
             variant="destructive"
             className="w-40"
           >

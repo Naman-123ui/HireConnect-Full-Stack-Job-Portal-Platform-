@@ -9,6 +9,11 @@ const useFetch = (cb, options = {}) => {
   const { session } = useSession();
 
   const fn = async (...args) => {
+    if (!session) {
+      setError(new Error("No active session"));
+      return;
+    }
+
     setLoading(true);
     setError(null);
 

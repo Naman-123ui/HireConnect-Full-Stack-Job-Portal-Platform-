@@ -34,7 +34,7 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
   );
 
   const handleStatusChange = (status) => {
-    fnHiringStatus(status).then(() => fnHiringStatus());
+    fnHiringStatus(status);
   };
 
   return (

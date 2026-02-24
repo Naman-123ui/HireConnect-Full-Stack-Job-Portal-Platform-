@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Uncomment to run Supabase locally (requires Docker)
+  # supabase:
+  #   image: supabase/supabase:latest
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_PASSWORD: postgres
+
+  # Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+      VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY}
+      VITE_CLERK_PUBLISHABLE_KEY: ${VITE_CLERK_PUBLISHABLE_KEY}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped

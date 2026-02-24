@@ -28,7 +28,7 @@ const Onboarding = () => {
     if (user?.unsafeMetadata?.role) {
       navigateUser(user.unsafeMetadata.role);
     }
-  }, [user]);
+  }, [user, navigate]);
 
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;

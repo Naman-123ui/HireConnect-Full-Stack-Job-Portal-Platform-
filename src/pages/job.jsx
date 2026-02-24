@@ -32,7 +32,8 @@ const JobPage = () => {
 
   useEffect(() => {
     if (isLoaded) fnJob();
-  }, [isLoaded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded, id]);
 
   const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
     updateHiringStatus,

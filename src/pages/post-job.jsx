@@ -63,7 +63,7 @@ const PostJob = () => {
 
   useEffect(() => {
     if (dataCreateJob?.length > 0) navigate("/jobs");
-  }, [loadingCreateJob]);
+  }, [dataCreateJob, navigate]);
 
   const {
     loading: loadingCompanies,
@@ -140,7 +140,7 @@ const PostJob = () => {
                 <SelectContent>
                   <SelectGroup>
                     {companies?.map(({ name, id }) => (
-                      <SelectItem key={name} value={id}>
+                      <SelectItem key={name} value={String(id)}>
                         {name}
                       </SelectItem>
                     ))}

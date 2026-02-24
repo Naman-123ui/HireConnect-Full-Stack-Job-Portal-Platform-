@@ -12,7 +12,7 @@ export async function getJobs(token, { location, company_id, searchQuery }) {
   }
 
   if (company_id) {
-    query = query.eq("company_id", company_id);
+    query = query.eq("company_id", Number(company_id));
   }
 
   if (searchQuery) {
@@ -74,11 +74,12 @@ export async function saveJob(token, { alreadySaved }, saveData) {
     const { data, error: deleteError } = await supabase
       .from("saved_jobs")
       .delete()
-      .eq("job_id", saveData.job_id);
+      .eq("job_id", saveData.job_id)
+      .select();
 
     if (deleteError) {
       console.error("Error removing saved job:", deleteError);
-      return data;
+      return null;
     }
 
     return data;
@@ -91,7 +92,7 @@ export async function saveJob(token, { alreadySaved }, saveData) {
 
     if (insertError) {
       console.error("Error saving job:", insertError);
-      return data;
+      return null;
     }
 
     return data;
@@ -144,7 +145,7 @@ export async function deleteJob(token, { job_id }) {
 
   if (deleteError) {
     console.error("Error deleting job:", deleteError);
-    return data;
+    return null;
   }
 
   return data;
