@@ -130,12 +130,14 @@ const PostJob = () => {
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Company">
-                    {field.value
-                      ? companies?.find((com) => com.id === Number(field.value))
-                          ?.name
-                      : "Company"}
-                  </SelectValue>
+                  <SelectValue
+                    placeholder={
+                      field.value
+                        ? companies?.find((com) => com.id === Number(field.value))
+                            ?.name
+                        : "Company"
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
